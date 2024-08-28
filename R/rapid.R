@@ -30,7 +30,7 @@ read_moc_transports = function(
              simplify = FALSE) |>
     unname()
   
-  longnames = readr::read_csv(system.file("rapid-amoc/moc_transports_lut.csv", package = "gstream"),
+  longnames = readr::read_csv(gstream_path("rapid-amoc/moc_transports_lut.csv"),
                               col_types = "cc")
 
   attr(x, "longnames") <- longnames
@@ -192,7 +192,7 @@ plot.rapid_mocha_time = function(x = read_rapid_mocha(),
       ggplot2::geom_line(data = yy,
                          mapping = ggplot2::aes(x = doy, y = value),
                          color = "black") +
-      ggplot2::labs(x = "Month", 
+      ggplot2::labs(x = "Day of Year", 
                     y = "Heat transport (W)", 
                     caption = "data source: https://mocha.earth.miami.edu/mocha/data/index.html") +
       ggplot2::facet_wrap(~name, scales = "free_y")
@@ -228,7 +228,8 @@ plot.rapid_mocha_time = function(x = read_rapid_mocha(),
      if (smooth) gg = gg + ggplot2::geom_smooth(method = 'loess', formula = 'y ~ x')
       
      gg = gg + 
-       ggplot2::labs(y = "Heat transport (W)", 
+       ggplot2::labs(x = "Date",
+                     y = "Heat transport (W)", 
                     caption = "data source: https://mocha.earth.miami.edu/mocha/data/index.html") + 
       ggplot2::facet_wrap(~name, scales = "free_y")
   }

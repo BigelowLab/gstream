@@ -20,11 +20,37 @@ install directly from github.
 
     remotes::install("BigelowLab/gstream)
 
-## Usage
+## Data
 
-The package contains a number of data sets compiled with the purpose of
-aiding Gulf Stream and AMOC analyses. Beyond access and simple plotting
-utilities, no effort has been made to include sophisticated analyses.
+The data for this package is manually curated - and we’ll update it as
+needed.
+
+### Getting the data
+
+The data used for this package is maintained
+[here](https://drive.google.com/file/d/1bozOVwdVhT-amEI4Zax7IdDdQZcU5-EM/view?usp=share_link).
+Manually download the data,
+[uncompress](https://github.com/BigelowLab/compressr) it and place it in
+your favorite data storage site.
+
+### Set your data path
+
+Next we need to allow this package to **securely** know where you have
+saved the data. We do this by placing a hidden text file in your
+**home** directory. If you are sharing this data with others (say on a
+network drive) then each user of the package will need to set up this
+file. So, into this file named `~/.gstream` place this content.
+Obviously, you will want to replace the paths with ones appropriate for
+your platform.
+
+    path: /mnt/s1/projects/ecocast/coredata/gstream
+    usn:
+      datapath: /mnt/s1/projects/ecocast/coredata/gstream/usn
+      rawpath: /mnt/s1/projects/ecocast/coredata/gstream/usn/raw
+      dailyuri: https://ocean.weather.gov/gulf_stream_latest.txt
+      ftpuri: https://ftp.opc.ncep.noaa.gov/grids/experimental/GStream
+
+Now you can test if the package can find the path yout specified.
 
 ``` r
 suppressPackageStartupMessages({
@@ -33,7 +59,18 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(rnaturalearth)
 })
+
+path = gstream_path()
+path
 ```
+
+    ## [1] "/mnt/s1/projects/ecocast/coredata/gstream"
+
+## Usage
+
+The package contains a number of data sets compiled with the purpose of
+aiding Gulf Stream and AMOC analyses. Beyond access and simple plotting
+utilities, no effort has been made to include sophisticated analyses.
 
 ## Gulf Stream Index (GSI)
 
@@ -329,6 +366,9 @@ cfg = read_configuration()
 cfg
 ```
 
+    ## $path
+    ## [1] "/mnt/s1/projects/ecocast/coredata/gstream"
+    ## 
     ## $usn
     ## $usn$datapath
     ## [1] "/mnt/s1/projects/ecocast/coredata/gstream/usn"
