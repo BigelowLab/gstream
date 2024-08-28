@@ -1,0 +1,29 @@
+Package: gstream
+Type: Package
+Title: Gulf Stream data
+Version: 0.1.0
+Author: Ben Tupper [aut, cre] <btupper@bigelow.org>, 
+  Johnathan Evanilla <btupper@bigelow.org>, 
+  Adam Kemberling <akemberling@gmri.org>,
+  Dewey Dunnington [ctb] (<https://orcid.org/0000-0002-9415-4582>)
+Maintainer: Ben Tupper <btupper@bigelow.org>
+URL: https://github.com/bigelowlab/gstream
+Description: R-language tools for workign with Guld Stream data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Imports:
+  utils,
+  graphics,
+  stats,
+  rlang,
+  yaml,
+  s2,
+  sf,
+  ncdf4,
+  tidyr,
+  dplyr
+Suggests: 
+  ecodata,
+  rnaturalearth
