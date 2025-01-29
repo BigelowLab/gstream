@@ -1,7 +1,7 @@
 gstream
 ================
 
-Serving Gulf Stream datasets directly from R.
+Serving Gulf Stream data sets directly from R.
 
 ## Requirements
 
@@ -50,7 +50,7 @@ your platform.
       dailyuri: https://ocean.weather.gov/gulf_stream_latest.txt
       ftpuri: https://ftp.opc.ncep.noaa.gov/grids/experimental/GStream
 
-Now you can test if the package can find the path yout specified.
+Now you can test if the package can find the path your specified.
 
 ``` r
 suppressPackageStartupMessages({
@@ -79,7 +79,7 @@ Index](https://en.wikipedia.org/wiki/Latitude_of_the_Gulf_Stream_and_the_Gulf_St
 provides a positional index. Data are provides via the
 [ecodata](https://noaa-edab.github.io/ecodata/) R package. If the
 package is installed, then this package serves the data it provides with
-a convneient plotting routine. If the package is not installed, then it
+a convenient plotting routine. If the package is not installed, then it
 is an error to try to read the GSI index with this package.
 
 ``` r
@@ -207,7 +207,7 @@ plot(x)
 
 ### [RAPID-MOCHA](https://mocha.earth.miami.edu/mocha/data/index.html)
 
-RAPID-MOCHA provides a heat transport timeseries.
+RAPID-MOCHA provides a heat transport time series.
 
 ``` r
 x = read_rapid_mocha() |>
@@ -258,7 +258,7 @@ plot(x, by = 'year')
 
 We defined two bounding boxes in the North Atlantic - one for the
 persistent “cold blob” centered south of Iceland and another for the
-“warm spot” south of New England and Martime Canada. We extracted
+“warm spot” south of New England and Maritime Canada. We extracted
 monthly
 [ERSST](https://www.ncei.noaa.gov/products/extended-reconstructed-sst)
 data and computed monthly
@@ -361,7 +361,7 @@ data](https://ocean.weather.gov/gulf_stream_latest.txt) for the north
 and south walls. These can be downloaded. We provide a mechanism for
 storing the URL of the daily data, the path to where you want to store
 the downloads and a simple script for downloading. The configuration can
-be stored anywhere, but by default we look for it isn `~/.gstream`.
+be stored anywhere, but by default we look for it in `~/.gstream`.
 
 ``` r
 cfg = read_configuration()

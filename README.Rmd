@@ -7,7 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Serving Gulf Stream datasets directly from R.
+Serving Gulf Stream data sets directly from R.
 
 ## Requirements
 
@@ -49,7 +49,7 @@ usn:
   ftpuri: https://ftp.opc.ncep.noaa.gov/grids/experimental/GStream
 ```
 
-Now you can test if the package can find the path yout specified.
+Now you can test if the package can find the path your specified.
 
 ```{r}
 suppressPackageStartupMessages({
@@ -71,7 +71,7 @@ The package contains a number of data sets compiled with the purpose of aiding G
 
 ## Gulf Stream Index (GSI)
 
-The [Gulf Stream Index](https://en.wikipedia.org/wiki/Latitude_of_the_Gulf_Stream_and_the_Gulf_Stream_north_wall_index) provides a positional index. Data are provides via the [ecodata](https://noaa-edab.github.io/ecodata/) R package. If the package is installed, then this package serves the data it provides with a convneient plotting routine.  If the package is not installed, then it is an error to try to read the GSI index with this package.
+The [Gulf Stream Index](https://en.wikipedia.org/wiki/Latitude_of_the_Gulf_Stream_and_the_Gulf_Stream_north_wall_index) provides a positional index. Data are provides via the [ecodata](https://noaa-edab.github.io/ecodata/) R package. If the package is installed, then this package serves the data it provides with a convenient plotting routine.  If the package is not installed, then it is an error to try to read the GSI index with this package.
 
 
 ```{r, message=FALSE}
@@ -137,7 +137,7 @@ plot(x)
 
 ### [RAPID-MOCHA](https://mocha.earth.miami.edu/mocha/data/index.html)
 
-RAPID-MOCHA provides a heat transport timeseries.
+RAPID-MOCHA provides a heat transport time series.
 
 ```{r, mocha}
 x = read_rapid_mocha() |>
@@ -158,7 +158,7 @@ plot(x, by = 'year')
 
 ## SST Patch Data
 
-We defined two bounding boxes in the North Atlantic - one for the persistent "cold blob" centered south of Iceland and another for the "warm spot" south of New England and Martime Canada.  We extracted monthly [ERSST](https://www.ncei.noaa.gov/products/extended-reconstructed-sst) data and computed monthly [OISST](https://www.ncei.noaa.gov/products/optimum-interpolation-sst) sea surface temperature statistics for each.
+We defined two bounding boxes in the North Atlantic - one for the persistent "cold blob" centered south of Iceland and another for the "warm spot" south of New England and Maritime Canada.  We extracted monthly [ERSST](https://www.ncei.noaa.gov/products/extended-reconstructed-sst) data and computed monthly [OISST](https://www.ncei.noaa.gov/products/optimum-interpolation-sst) sea surface temperature statistics for each.
 
 ```{r}
 # read the boxes but exclude the northern hemisphere record
@@ -205,7 +205,7 @@ plot(sf::st_geometry(coast), add = TRUE)
 
 **Note** that you don't need to create the configuration file if you are not downloading data.
 
-The daily data is hosted by by [NOAA's Ocean Prediction Center](https://ocean.weather.gov/) In particular they post the US Navy's [daily Gulf Stream point data](https://ocean.weather.gov/gulf_stream_latest.txt) for the north and south walls. These can be downloaded.  We provide a mechanism for storing the URL of the daily data, the path to where you want to store the downloads and a simple script for downloading.  The configuration can be stored anywhere, but by default we look for it isn `~/.gstream`.
+The daily data is hosted by by [NOAA's Ocean Prediction Center](https://ocean.weather.gov/) In particular they post the US Navy's [daily Gulf Stream point data](https://ocean.weather.gov/gulf_stream_latest.txt) for the north and south walls. These can be downloaded.  We provide a mechanism for storing the URL of the daily data, the path to where you want to store the downloads and a simple script for downloading.  The configuration can be stored anywhere, but by default we look for it in `~/.gstream`.
 
 
 ```{r}
