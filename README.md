@@ -335,13 +335,15 @@ x = read_usn(what = "orig") |>
     ## $ geom <MULTIPOINT [°]> MULTIPOINT ((-80.2 25), (-8..., MULTIPOINT ((-77.5 31.…
 
 This reads in all of the data stored with the package. We can then do a
-simple plot of all of the locations.
+simple plot of all of the locations. The black lines indicate the most
+recently posted walls.
 
 ``` r
 bb = sf::st_bbox(x)
 coast = rnaturalearth::ne_coastline(scale = "medium", returnclass = "sf")
 
 plot(x['wall'], pch = ".", axes = TRUE, reset = FALSE)
+plot(dplyr::slice_tail(x, n = 2) |> sf::st_geometry(), pch = ".", add = TRUE)
 plot(sf::st_geometry(coast), add = TRUE)
 ```
 

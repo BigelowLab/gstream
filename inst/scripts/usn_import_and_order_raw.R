@@ -4,12 +4,14 @@
 #'   save as orig
 #'   order and orient eastward
 #'   save as ordered
-#' It's fairly incestuous as we are saving to package data
+#'   
+
+stop("this is a one-and-done script to seed the database - see usn_update.R script")
 suppressPackageStartupMessages({
   library(gstream)
 })
 
-opath = system.file("usn", package = "gstream")
+
 cfg = read_configuration()
 
 rawfiles = list.files(file.path(cfg$usn$datapath, "archived-tar"),
@@ -21,10 +23,11 @@ names(rawfiles) <- years <- substring(basename(rawfiles), 8, 11)
 
 xx = lapply(rawfiles, read_wall_data_usn)
 
+
 ok = lapply(names(xx),
             function(year){
               sf::write_sf(xx[[year]],
-                           file.path(file.path(opath, "orig",
+                           file.path(file.path(cfg$usn$datapath, "orig",
                                                sprintf("%s.gpkg", year))))
             })
 
@@ -33,7 +36,7 @@ xx = lapply(xx, order_usn)
 ok = lapply(names(xx),
             function(year){
               sf::write_sf(xx[[year]],
-                           file.path(file.path(opath, "ordered",
+                           file.path(file.path(cfg$usn$datapath, "ordered",
                                                sprintf("%s.gpkg", year))))
             })
 
