@@ -44,7 +44,6 @@ update_year = function(cfg = gstream::read_configuration(),
   updated = updated |>
     deduplicate_usn() |>
     sf::write_sf(file.path(cfg$usn$datapath, "ordered", sprintf("%04.i.gpkg", year)))
-  
 }
 
-
+update_year()
