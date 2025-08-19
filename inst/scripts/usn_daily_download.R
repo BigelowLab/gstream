@@ -1,4 +1,7 @@
 library(yaml)
 cfg = read_yaml("~/.gstream")
 today = format(Sys.Date(), "%Y-%m-%d.sub") 
-download.file(cfg$usn$dailyuri, file.path(cfg$usn$rawpath, today))
+year = substring(today, 1,4)
+opath = file.path(cfg$usn$rawpath, year, today)
+if (!dir.exists(dirname(opath))) ok = dir.create(dirname(opath), recursive = TRUE)
+download.file(cfg$usn$dailyuri, opath)

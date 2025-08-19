@@ -215,10 +215,13 @@ deduplicate_usn = function(x = read_usn()){
 #' List USN files
 #' 
 #' @export
-#' @return cahracter vector of filenames
-list_usn = function(what = c("orig", "ordered")){
+#' @param what chr one of "orig", "ordered" or "raw"
+#' @param ... othewr arguments for list.files
+#' @return chr vector of filenames
+list_usn = function(what = c("orig", "ordered", "raw")[2],
+                    ...){
   path = gstream_path("usn", what[1])
-  list.files(path, full.names = TRUE)
+  list.files(path, full.names = TRUE,...)
 }
 
 #' Read one or more US Navy wall data files
@@ -313,7 +316,7 @@ read_wall_data_usn = function(filename, verbose = FALSE){
   }
 
   if (verbose) cat("reading:", basename(filename[1]), "\n")
-  string = readLines(filename)
+  string = readLines(filename, warn = FALSE)
   
   # kluge to fix garbled files like "gs023nw.sub" and empty files
   if (!dplyr::between(length(string), 50, 500)) {
@@ -430,3 +433,6 @@ usn_to_network = function(x = usn_example()){
       }) # group_map_function
   nets
 }
+
+
+

@@ -239,3 +239,10 @@ plot(sf::st_geometry(d), type = "l", axes = TRUE, reset= FALSE)
 plot(sf::st_geometry(do), type = "l", add = TRUE, col = "orange")
 ```
 
+
+Here we can look at all of the data for a particular week of the year, with most recent data superimposed.
+
+```{r}
+source("inst/explore/usn_plotly.R")
+plot_week()
+```

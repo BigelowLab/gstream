@@ -4,10 +4,15 @@
 \alias{list_usn}
 \title{List USN files}
 \usage{
-list_usn(what = c("orig", "ordered"))
+list_usn(what = c("orig", "ordered", "raw")[2], ...)
+}
+\arguments{
+\item{what}{chr one of "orig", "ordered" or "raw"}
+
+\item{...}{othewr arguments for list.files}
 }
 \value{
-cahracter vector of filenames
+chr vector of filenames
 }
 \description{
 List USN files

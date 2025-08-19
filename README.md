@@ -328,7 +328,7 @@ x = read_usn(what = "orig") |>
   dplyr::glimpse()
 ```
 
-    ## Rows: 3,905
+    ## Rows: 4,139
     ## Columns: 3
     ## $ date <date> 2010-01-22, 2010-01-22, 2010-01-25, 2010-01-25, 2010-01-27, 2010…
     ## $ wall <chr> "north", "south", "north", "south", "north", "south", "north", "s…
@@ -414,3 +414,16 @@ plot(sf::st_geometry(do), type = "l", add = TRUE, col = "orange")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+Here we can look at all of the data for a particular week of the year,
+with most recent data superimposed.
+
+``` r
+source("inst/explore/usn_plotly.R")
+plot_week()
+```
+
+    ## Warning: attribute variables are assumed to be spatially constant throughout
+    ## all geometries
+
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
