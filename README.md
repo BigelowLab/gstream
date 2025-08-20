@@ -426,4 +426,8 @@ plot_week()
     ## Warning: attribute variables are assumed to be spatially constant throughout
     ## all geometries
 
+    ## Warning in stars::st_warp(x, cellsize = d[1:2] * m, use_gdal = TRUE,
+    ## no_data_value = NA_real_, : no_data_value not set: missing values will appear
+    ## as zero values
+
 ![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
