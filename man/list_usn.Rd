@@ -9,7 +9,7 @@ list_usn(what = c("orig", "ordered", "raw")[2], ...)
 \arguments{
 \item{what}{chr one of "orig", "ordered" or "raw"}
 
-\item{...}{othewr arguments for list.files}
+\item{...}{other arguments for list.files}
 }
 \value{
 chr vector of filenames

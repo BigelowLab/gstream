@@ -8,6 +8,17 @@ read_configuration = function(filename = "~/.gstream"){
 }
 
 
+#' Read the bathymetry map
+#' 
+#' @export
+#' @param filename chr the name of the file
+#' @return stars object
+read_bathymetry = function(filename = system.file("extdata/bathy.tif",
+                                                  package = "gstream")){
+  stars::read_stars(filename)
+}
+
+
 #' Get geometry type code
 #' 
 #' @export

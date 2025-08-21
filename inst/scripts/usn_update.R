@@ -15,11 +15,14 @@ suppressPackageStartupMessages({
 update_year = function(cfg = gstream::read_configuration(), 
                        year = format(Sys.Date(), "%Y")){
   year = as.numeric(year)
-  cur = read_usn(year = year)
-
-  newfiles = list.files(cfg$usn$rawpath, pattern = glob2rx("*.sub"), full.names = TRUE)  
-  newdates = gsub(".sub", "", basename(newfiles), fixed = TRUE) |> as.Date()
+  year_dir = file.path(cfg$usn$rawpath, year)
+  if (!dir.exists(year_dir)) ok = dir.create(year_dir, recursive = TRUE)
+  rawfiles = list.files(year_dir, 
+                        pattern = glob2rx("*.sub"), full.names = TRUE)  
+  rawdates = gsub(".sub", "", basename(rawfiles), fixed = TRUE) |> as.Date()
   enddate = as.Date(sprintf("%0.4i-12-31", as.numeric(year)), format = "%Y-%m-%d")
+  
+  cur = read_usn(year = year)
 
   if (nrow(cur) == 0){
     # Happy New Year!
@@ -29,9 +32,12 @@ update_year = function(cfg = gstream::read_configuration(),
     startdate = max(cur$date) + 1
   }
   
-  newfiles = newfiles[newdates >= startdate & newdates <= enddate]
-  newdata = lapply(newfiles, read_wall_data_usn) |>
-    dplyr::bind_rows() |>
+  newfiles = rawfiles[rawdates >= startdate & rawdates <= enddate]
+  if (length(newfiles == 0)){
+    return(cur)
+  }
+  newdata = read_wall_data_usn(newfiles) |>
+    deduplicate_usn() |>
     order_usn() 
   
   if (nrow(cur) == 0){

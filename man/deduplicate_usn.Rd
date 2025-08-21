@@ -13,5 +13,5 @@ deduplicate_usn(x = read_usn())
 the input with duplicates dropped
 }
 \description{
-We just keep the first occruence for each duplicate
+We just keep the first occurrence for each duplicate
 }

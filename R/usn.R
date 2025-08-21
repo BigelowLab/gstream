@@ -199,7 +199,7 @@ plot2 = function(x, y){
 
 #' Remove duplicates (by date and wall)
 #'
-#' We just keep the first occruence for each duplicate
+#' We just keep the first occurrence for each duplicate
 #' 
 #' @export
 #' @param x sf MUTLIPOINT table
@@ -209,14 +209,15 @@ deduplicate_usn = function(x = read_usn()){
     tag = paste(format(x$date, "%Y-%m-%d"), x$wall)
     duplicated(tag)
   }
-  dplyr::filter(x, !is_dup(x))
+  ix = is_dup(x)
+  dplyr::filter(x, !ix)
 }
 
 #' List USN files
 #' 
 #' @export
 #' @param what chr one of "orig", "ordered" or "raw"
-#' @param ... othewr arguments for list.files
+#' @param ... other arguments for list.files
 #' @return chr vector of filenames
 list_usn = function(what = c("orig", "ordered", "raw")[2],
                     ...){
@@ -380,7 +381,8 @@ read_wall_data_usn = function(filename, verbose = FALSE){
   } else {
     NULL
   }
-  dplyr::bind_rows(nwall, swall) 
+  dplyr::bind_rows(nwall, swall) |>
+    sf::st_set_geometry("geom")
 }
 
 
